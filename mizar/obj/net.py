@@ -142,6 +142,9 @@ class Net(object):
                 bouncer_ips.append(b.ip)
         return bouncer_ips
 
+    def get_gateway(self):
+        return str(self.gateway)
+
     def create_bouncer(self):
         u = str(uuid.uuid4())
         bouncer_name = self.name + '-b-' + u

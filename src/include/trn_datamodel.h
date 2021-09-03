@@ -100,6 +100,7 @@ struct network_t {
 	__u32 nip[3];
 	__u32 nswitches;
 	__u32 switches_ips[TRAN_MAX_NSWITCH];
+	__u32 gateway;
 } __attribute__((packed, aligned(4)));
 
 struct vpc_key_t {

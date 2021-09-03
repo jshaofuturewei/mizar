@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations: 
+     mizar.com/vpc: vpc2
+     mizar.com/subnet: net21
+  name: test21
+  namespace: default
+spec:
+  containers:
+  - image: willfarrell/ping
+    imagePullPolicy: Always
+    name: test21
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+     mizar.com/vpc: vpc2
+     mizar.com/subnet: net22
+  name: test22
+  namespace: default
+spec:
+  containers:
+  - image: willfarrell/ping
+    imagePullPolicy: Always
+    name: test22
+

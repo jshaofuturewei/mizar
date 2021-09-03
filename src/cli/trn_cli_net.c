@@ -185,4 +185,6 @@ void dump_net(struct rpc_trn_network_t *net)
 			print_msg(", ");
 	}
 	print_msg("]\n");
+	print_msg("Gateway IP: 0x%x\n", net->gateway);
+
 }

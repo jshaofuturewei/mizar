@@ -138,3 +138,6 @@ class NetOperator(object):
     def process_gateway_change(self, net, new):
         logger.info("Update gateway to {} for net: {}".format(new, net.name))
         net.set_gateway(new)
+        for b in net.bouncers.values():
+            logger.info("The current bouncer ip to update is {}".format(b.ip))
+            b.droplet_obj.update_net(net)

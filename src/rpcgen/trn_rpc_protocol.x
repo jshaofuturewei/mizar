@@ -49,6 +49,7 @@ struct rpc_trn_network_t {
        uint32_t prefixlen;
        uint64_t tunid;
        uint32_t netip;
+       uint32_t gateway;
        uint32_t switches_ips<RPC_TRN_MAX_NET_SWITCHES>;
 };
 

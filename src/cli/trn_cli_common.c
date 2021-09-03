@@ -105,6 +105,8 @@ int trn_cli_parse_net(const cJSON *jsonobj, struct rpc_trn_network_t *net)
 	cJSON *prefixlen = cJSON_GetObjectItem(jsonobj, "prefixlen");
 	cJSON *switches_ips = cJSON_GetObjectItem(jsonobj, "switches_ips");
 	cJSON *switch_ip = NULL;
+	cJSON *gateway = cJSON_GetObjectItem(jsonobj, "gateway");
+
 
 	if (cJSON_IsString(tunnel_id)) {
 		uint64_t tid = atoi(tunnel_id->valuestring);
@@ -128,6 +130,12 @@ int trn_cli_parse_net(const cJSON *jsonobj, struct rpc_trn_network_t *net)
 	} else {
 		print_err("Error: Net prefixlen Error\n");
 		return -EINVAL;
+	}
+
+	if (gateway != NULL && cJSON_IsString(gateway)) {
+		struct sockaddr_in sa;
+		inet_pton(AF_INET, gateway->valuestring, &(sa.sin_addr));
+		net->gateway = sa.sin_addr.s_addr;
 	}
 
 	int i = 0;
