@@ -46,6 +46,7 @@ class Net(object):
         self.status = OBJ_STATUS.net_status_init
         self.ip = OBJ_DEFAULTS.default_net_ip
         self.prefix = OBJ_DEFAULTS.default_net_prefix
+        self.gateway = ""
         if spec is not None:
             self.set_obj_spec(spec)
         if self.prefix == "":
@@ -64,6 +65,7 @@ class Net(object):
             "vni": self.vni,
             "vpc": self.vpc,
             "bouncers": self.n_bouncers,
+            "gateway": self.gateway,
             "status": self.status
         }
 
@@ -78,6 +80,7 @@ class Net(object):
         self.ip = get_spec_val('ip', spec, OBJ_DEFAULTS.default_net_ip)
         self.prefix = get_spec_val(
             'prefix', spec, OBJ_DEFAULTS.default_net_prefix)
+        self.gateway = get_spec_val('gateway', spec)
 
     # K8s APIs
     def get_name(self):
@@ -116,6 +119,9 @@ class Net(object):
 
     def set_status(self, status):
         self.status = status
+
+    def set_gateway(self, gateway):
+        self.gateway = gateway
 
     def get_gw_ip(self):
         return str(self.cidr.get_ip(1))
